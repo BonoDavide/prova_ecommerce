@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 
 class Announcement extends Model
@@ -14,9 +15,9 @@ class Announcement extends Model
         return $this->belongsTo(User::class);
     }
 
-    // // relazione n-n annuncio-categoria
-    // public function categorie()
-    // {
-    //     return $this->belongsToMany(Categoria::class, 'annuncio_categoria');
-    // }
+    // relazione n-n annuncio-categoria
+    public function categorie()
+    {
+        return $this->belongsToMany(Category::class, 'announcement_category');
+    }
 }
