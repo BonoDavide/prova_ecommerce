@@ -27,7 +27,7 @@
                     <li class="nav-item ps-3">
                         <a class="nav-link" href="#">Ciao {{ Auth::user()->name }}</a>
                     </li>
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form class="ps-3" action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-danger ps-3">Logout</button>
                     </form>
