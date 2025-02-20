@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Category;
 use App\Models\Announcement;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
@@ -26,8 +27,11 @@ class AnnouncementEdit extends Component
     #[Validate('required|array')]
     public $category = [];
 
+    public $allCategories;
+
     // metodo per recuperare i dati dell'annuncio
-    public function mount($announcementId){
+    public function mount($announcementId)
+    {
         $announcement = Announcement::find($announcementId);
 
         $this->announcementId = $announcement->id;
@@ -36,10 +40,13 @@ class AnnouncementEdit extends Component
         $this->price = $announcement->price;
         $this->img = $announcement->img;
         $this->category = $announcement->categorie->pluck('id')->toArray();
+
+        $this->allCategories = Category::all();
     }
 
     // metodo per modificare l'annuncio
-    public function updateAnnouncement(){
+    public function updateAnnouncement()
+    {
 
         $this->validate();
 
@@ -55,6 +62,18 @@ class AnnouncementEdit extends Component
             $imgPath = $this->newImage->store('announcement', 'public');
             $announcement->img = $imgPath;
         }
+
+        // aggiorna gli altri campi
+        $announcement->update([
+            'title' => $this->title,
+            'description' => $this->description,
+            'price' => $this->price,
+        ]);
+
+        // aggiorna le categorie tramite la tabella pivot
+        $announcement->categories()->sync($this->category);
+
+        // return redirect()->route('annunci.index');
     }
 
 

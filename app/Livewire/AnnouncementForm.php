@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Category;
 use App\Models\Announcement;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
@@ -36,6 +37,12 @@ class AnnouncementForm extends Component
     #[Validate('required|array')]
     public $category = [];
 
+    public $allCategories;
+
+    public function mount()
+    {
+        $this->allCategories = Category::all(); 
+    }
 
     // funzione creazione annuncio
     public function createAnnouncement()
@@ -47,7 +54,7 @@ class AnnouncementForm extends Component
         Announcement::create(
             [
                 'title' => $this->title,
-                'img' => $this->img,
+                'img' => $imgPath,
                 'category' => $this->category,
                 'description' => $this->description,
                 'price' => $this->price,
@@ -73,6 +80,8 @@ class AnnouncementForm extends Component
     //il render sempre come ultimo!
     public function render()
     {
-        return view('livewire.announcement-form');
+        return view('livewire.announcement-form', [
+            'allCategories' => $this->allCategories
+        ]);
     }
 }

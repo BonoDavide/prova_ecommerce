@@ -14,7 +14,7 @@
                     <a class="nav-link" href="#">Catalogo Prodotti</a>
                 </li>
                 <li class="nav-item ps-3">
-                    <a class="nav-link" href="#">Pubblica Annuncio</a>
+                    <a class="nav-link" href="{{route('announcement.form')}}">Pubblica Annuncio</a>
                 </li>
                 @guest
                     <li class="nav-item ps-3">
