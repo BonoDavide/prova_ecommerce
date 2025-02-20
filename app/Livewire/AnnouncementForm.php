@@ -80,6 +80,7 @@ class AnnouncementForm extends Component
     //il render sempre come ultimo!
     public function render()
     {
+        // dd($this->allCategories);
         return view('livewire.announcement-form', [
             'allCategories' => $this->allCategories
         ]);

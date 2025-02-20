@@ -10,7 +10,7 @@
     <title>PPF</title>
 </head>
 
-<body>
+<body class="classCustom">
 
     <x-navbar/>
 

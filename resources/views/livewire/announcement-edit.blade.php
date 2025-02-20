@@ -1,7 +1,7 @@
 <div class="bg-primary container">
     <div class="row">
         <div class="col-12">
-            <h2 class="display-3 text-center text-dark">Modifica il tuo Annuncio</h2>
+            <h2 class="ddisplay-3 text-center text-dark pt-5 pb-5">Modifica il tuo Annuncio</h2>
         </div>
         <div class="row">
             <div class="col-12 col-md-5">

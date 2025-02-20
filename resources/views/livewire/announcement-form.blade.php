@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="display-3 text-center text-dark pb-5">Pubblica il tuo Annuncio</h2>
+            <h2 class="display-3 text-center text-dark pt-5 pb-5">Pubblica il tuo Annuncio</h2>
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-5">
@@ -20,12 +20,15 @@
 
                     {{-- sezione categorie --}}
                     <div class="form-group mb-3">
-                        <label for="category">Categorie</label>
-                        <select multiple id="category" class="form-control" wire:model="category">
+                        <label class="form-label">Categorie</label>
+                        <div class="d-flex flex-wrap gap-2">
                             @foreach ($allCategories as $category)
-                                <option value="{{ $category->id }}">{{ $category->nome }}</option>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="category-{{ $category->id }}" value="{{ $category->id }}" wire:model="category">
+                                    <label class="form-check-label" for="category-{{ $category->id }}">{{ $category->name }}</label>
+                                </div>
                             @endforeach
-                        </select>
+                        </div>
                     </div>
 
                     {{-- sezione descrizione --}}

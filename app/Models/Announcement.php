@@ -16,7 +16,7 @@ class Announcement extends Model
     }
 
     // relazione n-n annuncio-categoria
-    public function categorie()
+    public function categories()
     {
         return $this->belongsToMany(Category::class, 'announcement_category');
     }
