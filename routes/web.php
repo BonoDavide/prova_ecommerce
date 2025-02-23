@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\AnnouncementDetail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AnnouncementController;
 
@@ -12,8 +13,11 @@ Route::middleware('auth')->group(function () {
     // rotta get per il form di creazioine dell'annuncio
     Route::get('/annunci/form', [AnnouncementController::class, 'announcementForm'])->name('announcement.form');
     // rotta di tipo get per il form di edit dell'annuncio
-    Route::get('/announcement/edit', [AnnouncementController::class, 'announcementEdit'])->name('announcement.edit');
+    Route::get('/announcement/edit/{announcementId}', [AnnouncementController::class, 'announcementEdit'])->name('announcement.edit');
 });
 
 // rotta get per il catalogo annunci
 Route::get('/annunci/catalogo', [AnnouncementController::class, 'announcementShow'])->name('announcement.list');
+
+// rotta get per il dettaglio
+Route::get('/annunci/dettaglio/{announcementId}', [AnnouncementController::class, 'announcementDetail'])->name('announcement.detail');

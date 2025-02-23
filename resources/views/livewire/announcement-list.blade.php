@@ -38,7 +38,7 @@
                             @endif
 
                             {{-- bottone dettaglio --}}
-                            <button class="btn btn-dark text-light">Dettagli</button>
+                            <a href="{{ route('announcement.detail', $announcement->id) }}" class="btn btn-dark text-light">Dettagli</a>
                         </div>
                     </div>
                 </div>

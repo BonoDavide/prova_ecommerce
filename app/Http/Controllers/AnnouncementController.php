@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class AnnouncementController extends Controller
 {
+    public function announcementDetail($announcementId){
+        return view('announcement.announcement_detail', compact('announcementId'));
+    }
+
+
     /**
      * Display a listing of the resource.
      */

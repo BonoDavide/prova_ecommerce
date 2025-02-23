@@ -20,7 +20,7 @@ class AnnouncementEdit extends Component
     public $description;
     #[Validate('required|numeric|min:0')]
     public $price;
-    #[Validate('required|image')]
+
     public $img;
     #[Validate('nullable|image')]
     public $newImg;
@@ -39,7 +39,7 @@ class AnnouncementEdit extends Component
         $this->description = $announcement->description;
         $this->price = $announcement->price;
         $this->img = $announcement->img;
-        $this->category = $announcement->categorie->pluck('id')->toArray();
+        $this->category = $announcement->categories->pluck('id')->toArray();
 
         $this->allCategories = Category::all();
     }
@@ -69,6 +69,9 @@ class AnnouncementEdit extends Component
             'description' => $this->description,
             'price' => $this->price,
         ]);
+
+        // aggiorna il record con i nuovi dati
+        $announcement->update($data);
 
         // aggiorna le categorie tramite la tabella pivot
         $announcement->categories()->sync($this->category);

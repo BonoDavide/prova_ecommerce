@@ -1,5 +1,5 @@
 <x-layout>
 
-    <livewire:announcement-edit/>
+    <livewire:announcement-edit :announcementId="$announcementId" />
     
 </x-layout>

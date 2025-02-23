@@ -1,71 +1,55 @@
-<div class="bg-primary container">
+<div class="container">
     <div class="row">
         <div class="col-12">
-            <h2 class="ddisplay-3 text-center text-dark pt-5 pb-5">Modifica il tuo Annuncio</h2>
+            <h2 class="display-3 text-center text-dark pt-5 pb-5">Modifica il tuo Annuncio</h2>
         </div>
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-12 col-md-5">
                 <form wire:submit.prevent="updateAnnouncement">
-
-                    {{-- sezione titolo --}}
-                    <div class="mb-3">
+                    {{-- Sezione Titolo --}}
+                    <div class="form-group mb-3">
                         <label class="form-label">Titolo</label>
-                        <input type="text" class="form-control" aria-describedby="emailHelp" wire:model.blur="title">
-                        <div class="text-danger">
-                            @error('title')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
+                        <input type="text" class="form-control" wire:model.defer="title">
                     </div>
 
-                    {{-- sezione nuova immagine, nullable --}}
-                    <div class="form-group">
-                        <label for="newImg">Nuova Immagine</label>
+                    {{-- Sezione Nuova Immagine, nullable --}}
+                    <div class="form-group mb-3">
+                        <label for="newImg">Nuova Immagine (opzionale)</label>
                         <input type="file" id="newImg" class="form-control" wire:model="newImg">
-                        @error('newImg')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-
                         @if ($img)
-                            <p>Immagine attuale:</p>
+                            <p class="mt-2">Immagine attuale:</p>
                             <img src="{{ asset('storage/' . $img) }}" class="img-thumbnail" width="150">
                         @endif
                     </div>
 
                     {{-- sezione categorie --}}
-                    <div class="form-group">
-                        <label for="category">Categorie</label>
-                        <select multiple id="category" class="form-control" wire:model="category">
-                            @foreach ($allCategories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Categorie</label>
+                        <div class="d-flex flex-wrap gap-2">
+                            @foreach ($allCategories as $cat)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="category-{{ $cat->id }}"
+                                        value="{{ $cat->id }}" wire:model="category">
+                                    <label class="form-check-label"
+                                        for="category-{{ $cat->id }}">{{ $cat->name }}</label>
+                                </div>
                             @endforeach
-                        </select>
-                        @error('category')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    {{-- sezione descrizione --}}
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" wire:model.blur="description"></textarea>
-                        <label for="floatingTextarea">Descrizione</label>
-                        @error('description')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    {{-- sezione prezzo --}}
-                    <div class="mb-3">
-                        <label class="form-label">Prezzo</label>
-                        <input type="number" class="form-control" aria-describedby="emailHelp" wire:model.blur="price">
-                        <div class="text-danger">
-                            @error('price')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Modifica Annuncio</button>
+                    {{-- Sezione Descrizione --}}
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="floatingTextarea" wire:model.defer="description"></textarea>
+                        <label for="floatingTextarea">Descrizione</label>
+                    </div>
+
+                    {{-- Sezione Prezzo --}}
+                    <div class="form-group mb-3">
+                        <label class="form-label">Prezzo</label>
+                        <input type="number" class="form-control" wire:model.defer="price">
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Aggiorna Annuncio</button>
                 </form>
             </div>
         </div>
