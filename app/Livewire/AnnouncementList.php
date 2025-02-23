@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Announcement;
 
+
 class AnnouncementList extends Component
 {
 
