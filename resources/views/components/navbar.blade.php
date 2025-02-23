@@ -11,7 +11,7 @@
                     <a class="nav-link text-light active ps-5" aria-current="page" href="{{ route('welcome') }}">Home</a>
                 </li>
                 <li class="nav-item ps-3">
-                    <a class="nav-link text-light" href="#">Catalogo Prodotti</a>
+                    <a class="nav-link text-light" href="{{route('announcement.list')}}">Catalogo Prodotti</a>
                 </li>
                 <li class="nav-item ps-3">
                     <a class="nav-link text-light" href="{{route('announcement.form')}}">Pubblica Annuncio</a>

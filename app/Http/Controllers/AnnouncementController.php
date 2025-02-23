@@ -20,7 +20,7 @@ class AnnouncementController extends Controller
      */
     public function announcementForm()
     {
-        return view('announcement.announcement_form');
+        return view('announcement.announcement_form',);
     }
 
     /**
@@ -34,17 +34,18 @@ class AnnouncementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Announcement $announcement)
+    public function announcementShow()
     {
-        //
+        $announcements = Announcement::with('categories')->get();
+        return view('announcement.announcement_list', compact('announcements'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Announcement $announcement)
+    public function announcementEdit($announcementId)
     {
-        
+        return view('announcement.announcement_edit', compact('announcementId'));
     }
 
     /**

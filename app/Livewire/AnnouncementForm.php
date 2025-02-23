@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Announcement;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
+use Illuminate\Support\Facades\Auth;
 
 class AnnouncementForm extends Component
 {
@@ -47,23 +48,29 @@ class AnnouncementForm extends Component
     // funzione creazione annuncio
     public function createAnnouncement()
     {
+        // dd('creaateAnnouncement');
         $this->validate();
-
+        
         $imgPath = $this->img->store('announcement', 'public');
-
-        Announcement::create(
+        
+        $announcement = Announcement::create(
             [
+                'user_id' => Auth::id(),
                 'title' => $this->title,
                 'img' => $imgPath,
-                'category' => $this->category,
+                // 'category' => $this->category,
                 'description' => $this->description,
                 'price' => $this->price,
-            ]
-        );
-
-        // richiamo della funzione per svuotare il form
-        $this->cleanForm();
-        session()->flash('message', 'Annuncio creato con successo!');
+                ]
+            );
+            
+            $announcement->categories()->sync($this->category);
+            
+            // richiamo della funzione per svuotare il form
+            $this->cleanForm();
+            return redirect()->route('announcement.list');
+            
+            session()->flash('message', 'Annuncio creato con successo!');
     }
 
     //funzione per svuotare il form

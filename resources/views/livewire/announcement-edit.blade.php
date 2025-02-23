@@ -37,7 +37,7 @@
                         <label for="category">Categorie</label>
                         <select multiple id="category" class="form-control" wire:model="category">
                             @foreach ($allCategories as $category)
-                                <option value="{{ $category->id }}">{{ $category->nome }}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
                         @error('category')

@@ -5,7 +5,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-md-5">
-                <form wire:submit="createAnnouncement">
+                <form wire:submit.prevent="createAnnouncement">
                     {{-- sezione titolo --}}
                     <div class="form-group mb-3">
                         <label class="form-label">Titolo</label>

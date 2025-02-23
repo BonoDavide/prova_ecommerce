@@ -59,8 +59,8 @@ class AnnouncementEdit extends Component
 
         // se c'è una nuova immagine, la aggiorniamo
         if ($this->newImg) {
-            $imgPath = $this->newImage->store('announcement', 'public');
-            $announcement->img = $imgPath;
+            $imgPath = $this->newImg->store('announcement', 'public');
+            $data['img'] = $imgPath;
         }
 
         // aggiorna gli altri campi
@@ -73,7 +73,7 @@ class AnnouncementEdit extends Component
         // aggiorna le categorie tramite la tabella pivot
         $announcement->categories()->sync($this->category);
 
-        // return redirect()->route('annunci.index');
+        return redirect()->route('announcement.list');
     }
 
 
