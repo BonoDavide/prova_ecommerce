@@ -64,11 +64,11 @@ class AnnouncementEdit extends Component
         }
 
         // aggiorna gli altri campi
-        $announcement->update([
+        $data = [
             'title' => $this->title,
             'description' => $this->description,
             'price' => $this->price,
-        ]);
+        ];
 
         // aggiorna il record con i nuovi dati
         $announcement->update($data);
